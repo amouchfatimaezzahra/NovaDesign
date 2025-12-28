@@ -1,14 +1,72 @@
-/* Style général */
-body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7f6; margin: 0; }
-header { background: #2c3e50; color: white; padding: 20px; text-align: center; }
+:root {
+    --primary: #2c3e50;
+    --accent: #e67e22;
+    --success: #27ae60;
+}
 
-main { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; padding: 40px; }
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    color: #333;
+}
 
-/* Zone Éditeur */
-.editor-section { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-canvas { border: 1px dashed #ccc; margin-bottom: 15px; }
+header {
+    background: var(--primary);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
 
-/* Formulaire */
-.checkout-section { background: white; padding: 30px; border-radius: 10px; width: 300px; }
-.btn-order { background: #27ae60; color: white; border: none; padding: 12px; width: 100%; border-radius: 5px; cursor: pointer; margin-top: 15px; }
-.btn-order:hover { background: #219150; }
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.editor-box, .order-box {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Important : Visibilité du Canvas */
+#main-canvas {
+    border: 2px dashed #bdc3c7;
+    background-color: #ffffff;
+}
+
+.controls {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background: var(--accent);
+    color: white;
+}
+
+.btn-submit {
+    background: var(--success);
+    width: 100%;
+    font-size: 1.1em;
+    margin-top: 15px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+}
