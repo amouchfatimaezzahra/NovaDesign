@@ -3,34 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NovaDesign | Éditeur en ligne</title>
+    <title>NovaDesign | Éditeur Pro</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
 </head>
 <body>
+
     <header>
         <h1>NovaDesign</h1>
+        <p>Impression & Design Personnalisé</p>
     </header>
 
-    <main>
-        <div class="editor-section">
-            <canvas id="main-canvas" width="400" height="400"></canvas>
+    <main class="container">
+        <div class="editor-box">
+            <h2>1. Créez votre Design</h2>
+            <canvas id="main-canvas"></canvas>
             
-            <div class="toolbar">
-                <button onclick="addText()">Ajouter Texte</button>
-                <input type="color" id="colorPicker" onchange="changeColor(this.value)">
+            <div class="controls">
+                <button onclick="ajouterTexte()">Ajouter du Texte</button>
+                <input type="color" id="colorPicker" title="Changer la couleur">
+                <button onclick="nettoyerCanvas()" class="btn-danger">Effacer tout</button>
             </div>
         </div>
 
-        <div class="checkout-section">
-            <h2>Finaliser ma commande</h2>
+        <div class="order-box">
+            <h2>2. Finalisez la Commande</h2>
             <form id="orderForm">
-                <label>Mode de paiement :</label>
-                <select id="paymentMethod" required>
-                    <option value="card">Carte Bancaire (En ligne)</option>
-                    <option value="cod">Paiement à la livraison</option>
-                </select>
-                <button type="submit" class="btn-order">Passer la commande</button>
+                <div class="input-group">
+                    <label>Méthode de Paiement</label>
+                    <select id="paymentMethod" required>
+                        <option value="livraison">Paiement à la livraison</option>
+                        <option value="ligne">Paiement en ligne (Stripe/Carte)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-submit">Valider ma commande</button>
             </form>
         </div>
     </main>
