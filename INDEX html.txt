@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaDesign | Éditeur en ligne</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>NovaDesign</h1>
+    </header>
+
+    <main>
+        <div class="editor-section">
+            <canvas id="main-canvas" width="400" height="400"></canvas>
+            
+            <div class="toolbar">
+                <button onclick="addText()">Ajouter Texte</button>
+                <input type="color" id="colorPicker" onchange="changeColor(this.value)">
+            </div>
+        </div>
+
+        <div class="checkout-section">
+            <h2>Finaliser ma commande</h2>
+            <form id="orderForm">
+                <label>Mode de paiement :</label>
+                <select id="paymentMethod" required>
+                    <option value="card">Carte Bancaire (En ligne)</option>
+                    <option value="cod">Paiement à la livraison</option>
+                </select>
+                <button type="submit" class="btn-order">Passer la commande</button>
+            </form>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

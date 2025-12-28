@@ -1,0 +1,32 @@
+// Initialisation de l'espace de dessin
+const canvas = new fabric.Canvas('main-canvas');
+
+// Fonction pour ajouter du texte modifiable
+function addText() {
+    const text = new fabric.IText('Votre Texte', {
+        left: 100,
+        top: 100,
+        fontSize: 20,
+        fill: '#000000'
+    });
+    canvas.add(text);
+}
+
+// Fonction pour changer la couleur de l'élément sélectionné
+function changeColor(color) {
+    const activeObject = canvas.getActiveObject();
+    if (activeObject) {
+        activeObject.set('fill', color);
+        canvas.renderAll();
+    }
+}
+
+// Gestion de la soumission du formulaire
+document.getElementById('orderForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const method = document.getElementById('paymentMethod').value;
+    const designData = canvas.toDataURL(); // Capture du design en image
+
+    alert("Commande reçue !\nMéthode : " + (method === 'card' ? "En ligne" : "À la livraison"));
+    console.log("Fichier image prêt pour l'impression :", designData);
+});
