@@ -1,32 +1,48 @@
-// Initialisation de l'espace de dessin
-const canvas = new fabric.Canvas('main-canvas');
-
-// Fonction pour ajouter du texte modifiable
-function addText() {
-    const text = new fabric.IText('Votre Texte', {
-        left: 100,
-        top: 100,
-        fontSize: 20,
-        fill: '#000000'
+// Attendre que la page soit totalement chargée
+window.onload = function() {
+    // Initialisation du Canvas Fabric.js
+    const canvas = new fabric.Canvas('main-canvas', {
+        width: 450,
+        height: 300,
+        backgroundColor: '#fff'
     });
-    canvas.add(text);
-}
 
-// Fonction pour changer la couleur de l'élément sélectionné
-function changeColor(color) {
-    const activeObject = canvas.getActiveObject();
-    if (activeObject) {
-        activeObject.set('fill', color);
-        canvas.renderAll();
-    }
-}
+    // Fonction pour ajouter du texte
+    window.ajouterTexte = function() {
+        const text = new fabric.IText('Cliquez pour éditer', {
+            left: 50,
+            top: 50,
+            fontFamily: 'Arial',
+            fontSize: 25
+        });
+        canvas.add(text);
+        canvas.setActiveObject(text);
+    };
 
-// Gestion de la soumission du formulaire
-document.getElementById('orderForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const method = document.getElementById('paymentMethod').value;
-    const designData = canvas.toDataURL(); // Capture du design en image
+    // Changer la couleur du texte sélectionné
+    document.getElementById('colorPicker').oninput = function() {
+        const activeObject = canvas.getActiveObject();
+        if (activeObject) {
+            activeObject.set('fill', this.value);
+            canvas.renderAll();
+        }
+    };
 
-    alert("Commande reçue !\nMéthode : " + (method === 'card' ? "En ligne" : "À la livraison"));
-    console.log("Fichier image prêt pour l'impression :", designData);
-});
+    // Effacer le canvas
+    window.nettoyerCanvas = function() {
+        if(confirm("Voulez-vous tout effacer ?")) {
+            canvas.clear();
+            canvas.setBackgroundColor('#fff', canvas.renderAll.bind(canvas));
+        }
+    };
+
+    // Gestion de la commande
+    document.getElementById('orderForm').onsubmit = function(e) {
+        e.preventDefault();
+        const mode = document.getElementById('paymentMethod').value;
+        const imageDesign = canvas.toDataURL('png');
+        
+        alert("Succès ! Votre design NovaDesign a été enregistré.\nMode : " + mode);
+        console.log("Image envoyée au serveur : ", imageDesign);
+    };
+};
